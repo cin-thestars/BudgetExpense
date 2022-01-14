@@ -9,9 +9,9 @@
 # Technology 
 ###### - WPF
 # Team members
-###### * Lim Seang 
-###### * Nov Dara 
-###### * Thavrith Lincoln
+###### + Lim Seang 
+###### + Nov Dara 
+###### + Thavrith Lincoln
 # Language Support 
 ###### - Khmer 
 ###### - English 
