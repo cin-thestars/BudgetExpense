@@ -9,9 +9,14 @@
 # Feature 
 ###### - WPF
 # Team members
-###### * _Lim Seang 
-###### * _Nov Dara 
-###### * -Thavrith Lincoln
-                                                                 
+###### * Lim Seang 
+###### * Nov Dara 
+###### * Thavrith Lincoln
+# + Language Support 
+###### - Khmer 
+###### - English 
+#  + Description 
+###### - An application that will let you manage your income, expenses and savings.
+###### - You can check the report of your transactions weekly.                                                               
 
 
