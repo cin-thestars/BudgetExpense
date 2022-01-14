@@ -8,7 +8,7 @@
 ###### 6/. Users can track their savings.
 # Technology 
 ###### - WPF
-# Team members
+# Team Members
 ###### + Lim Seang 
 ###### + Nov Dara 
 ###### + Thavrith Lincoln
