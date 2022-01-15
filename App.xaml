@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:BudgetExpense"
              StartupUri="BudgetExpenseMainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionary/ButtonDictionary2.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

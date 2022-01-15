@@ -5,8 +5,288 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetExpense"
         mc:Ignorable="d"
-        Title="Budget Expense" Height="450" Width="800">
+        Title="Budget Expense" Height="700" Width="500" WindowStartupLocation="CenterScreen"
+        Background="#FF3A3C3B" Foreground="White" FontFamily="Cambria" FontSize="18" >
     <Grid>
+        <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="#FF3A3C3B" >
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Border" BorderThickness="1" BorderBrush="#FF3A3C3B" 
+                                        CornerRadius="8" Margin="10">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="white" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="#FF3A3C3B" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            
+            <TabItem Header="Transaction" Width="150" FontFamily="Cambria" FontSize="20" Background="#FF3A3C3B">
 
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!-- Border Mywallet -->
+                    <Border Grid.Row="0" Margin="1,1,1,2" CornerRadius="5" BorderThickness="1" BorderBrush="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <!-- My Wallet -->
+                            <Label Grid.Column="2" Content="My Wallet" VerticalAlignment="Top" HorizontalAlignment="Center"
+                                   FontFamily="Cambria" FontSize="16" Foreground="White" Margin="10,0,20,0"/>
+                            <!-- Currency Expander -->
+                            <!-- USD AND Riel -->
+                            <Expander Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="13,4"/>
+                            <!-- Date time -->
+                            <DatePicker Grid.Column="2" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                        Background="#FF3A3C3B" Width="150" FontFamily="Cambria" BorderBrush="White" BorderThickness="1"/>
+
+                            <!-- Money and Symbol-->
+                            <Label Content="Current Balance:" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                   FontSize="12" FontFamily="Cambria" Foreground="White" Opacity="0.6"/>
+                            <Label Content="0.00" Grid.Column="2" Grid.Row="1" x:Name="lblMoney" VerticalAlignment="Bottom"  HorizontalAlignment="Center"
+                                   FontFamily="Cambria" FontSize="30" Foreground="White"/>
+                            <Label x:Name="lblSymbol" Grid.Column="2" Grid.Row="1" Content="$" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                   FontFamily="Cambria" FontSize="24" Foreground="White" Margin="30,3,0,3"/>
+
+                        </Grid>
+                    </Border>
+
+                    <!-- Border 2 Income Expense Saving -->
+                    <Border Grid.Row="1" Margin="1,2,1,1" CornerRadius="5" BorderThickness="1" BorderBrush="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Income -->
+                            <Border Grid.RowSpan="2" CornerRadius="5" BorderThickness="1" BorderBrush="White" Margin="5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label x:Name="lblIncome" Content="Income" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                           Grid.Row="1" Foreground="White" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
+                                    <Label x:Name="lblShowIncomeValue" Content="0.00" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                           Grid.Row="0" Foreground="White" FontFamily="Cambria" FontSize="36"/>
+                                    <Label x:Name="lblUSDSymbolIncome" Foreground="WhiteSmoke" Grid.Row="0" Content="$" Margin="15,14,0,0" 
+                                           FontSize="20" FontFamily="Cambira"/>
+
+                                </Grid>
+                            </Border>
+
+                            <!-- Expense -->
+                            <Border Grid.Column="2" Grid.RowSpan="2" CornerRadius="5" BorderThickness="1" BorderBrush="White" Margin="5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label x:Name="lblExpense" Content="Expense" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                           Grid.Row="1" Foreground="White" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
+                                    <Label x:Name="lblShowExpenseValue" Content="0.00" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                           Grid.Row="0" Foreground="White" FontFamily="Cambria" FontSize="36"/>
+                                    <Label x:Name="lblExpenseSymbol" Foreground="WhiteSmoke" Grid.Row="0" Content="$" Margin="15,14,0,0" 
+                                           FontSize="20" FontFamily="Cambira"/>
+
+                                </Grid>
+                            </Border>
+
+                            <!-- Saving -->
+                            <Border Grid.Column="4" Grid.RowSpan="2" CornerRadius="5" BorderThickness="1" BorderBrush="White" Margin="5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label x:Name="lblSaving" Content="Saving" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                           Grid.Row="1" Foreground="White" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
+                                    <Label x:Name="lblShowSavingValue" Content="0.00" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                           Grid.Row="0" Foreground="White" FontFamily="Cambria" FontSize="36"/>
+                                    <Label x:Name="lblSavingSymbol" Foreground="WhiteSmoke" Grid.Row="0" Content="$" Margin="15,14,0,0" 
+                                           FontSize="20" FontFamily="Cambira"/>
+
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- List Transaction -->
+                    <Border Grid.Row="2" BorderBrush="White" CornerRadius="5" BorderThickness="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <DataGrid HeadersVisibility="None" Background="#FF3A3C3B" Grid.ColumnSpan="2">
+                                
+                            </DataGrid>
+
+                            <Canvas Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                <Button Style="{StaticResource btnRound}" Canvas.Left="10" Canvas.Bottom="10" Content="KH" 
+                                        Foreground="White"/>
+                                <Button Style="{StaticResource btnRound}" Canvas.Right="10" Canvas.Bottom="10" Content="+" Foreground="White" Width="30"
+                                        Height="30"/>
+                            </Canvas>
+                            
+                        </Grid>
+                        
+
+
+                    </Border>
+
+                </Grid>
+
+
+            </TabItem>
+
+            <!-- Tabitem Control Expense -->
+            <TabItem Header="Saving" Width="150" FontFamily="Cambria" FontSize="20" Margin="8,0,-8,0" Background="#FF3A3C3B">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Margin="5" />
+
+                    <Label Content="Savings" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                           FontSize="28" FontFamily="Cambria" Foreground="White"/>
+
+                    <!-- Tabcontrol for Saving and Complete -->
+                    <TabControl Grid.Row="1" Background="#FF3A3C3B" >
+                        <TabItem Header="Saving" Width="230" >
+                            <DataGrid Background="#FF3A3C3B" Margin="5" >
+                                
+                            </DataGrid>
+                        </TabItem>
+
+                        <TabItem Header="Completed" Width="230">
+                            <DataGrid Background="#FF3A3C3B" Margin="5" >
+
+                            </DataGrid>
+                        </TabItem>
+                        
+                    </TabControl>
+                    
+                </Grid>
+            </TabItem>
+
+            <!-- Tabitem Control Saving -->
+            <TabItem Header="Report" Width="150" FontFamily="Cambria" FontSize="20" Margin="31,0,-31,0"
+                     Background="#FF3A3C3B">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!-- title and datetime -->
+                    <Border Grid.RowSpan="2" CornerRadius="5" BorderThickness="1" BorderBrush="WhiteSmoke" Margin="5"/>
+                    <Label Grid.Row="0" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
+                           HorizontalContentAlignment="Center" Content="Reports" Foreground="White" FontSize="25" FontFamily="Cambria"/>
+                    <DatePicker Grid.Row="1" VerticalAlignment="Top" 
+                                HorizontalAlignment="Center" FontFamily="Cambria" FontSize="16" Width="150" Background="#FF3A3C3B" BorderBrush="WhiteSmoke"
+                                BorderThickness="1"/>
+
+                    <!-- Expense Report -->
+                    <Border Grid.Row="2" BorderBrush="WhiteSmoke" BorderThickness="1" CornerRadius="5" Margin="3">
+                        <Grid>
+                            <TabControl Grid.Row="1" Background="#FF3A3C3B">
+                                <TabItem Header="Expense" Width="200" >
+                                    <Border Margin="2" BorderBrush="WhiteSmoke" BorderThickness="1" CornerRadius="5">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <Label Content="Expense" Foreground="White" VerticalAlignment="Center" FontSize="18"/>
+                                            <Label Content="$" Foreground="White" VerticalAlignment="Center" 
+                                                   HorizontalAlignment="Right" Margin="50,0"/>
+                                            <Label Content="0.00" Foreground="White" VerticalAlignment="Center" 
+                                                   HorizontalAlignment="Right"/>
+
+                                            <!-- circle graph and list -->
+
+                                        </Grid>
+                                    </Border>
+                                </TabItem>
+
+
+                                <TabItem Header="Savings" Width="200">
+                                    <Border Margin="2" BorderBrush="WhiteSmoke" BorderThickness="1" CornerRadius="5">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <Label Content="Saving" Foreground="White" VerticalAlignment="Center" FontSize="18"/>
+                                            <Label Content="$" Foreground="White" VerticalAlignment="Center" 
+                                                   HorizontalAlignment="Right" Margin="50,0"/>
+                                            <Label Content="0.00" Foreground="White" VerticalAlignment="Center" 
+                                                   HorizontalAlignment="Right"/>
+
+                                            <!-- circle graph and list -->
+
+                                            
+                                        </Grid>
+                                    </Border>
+                                </TabItem>
+                                
+                            </TabControl>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
