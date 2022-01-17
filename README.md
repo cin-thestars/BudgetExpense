@@ -7,14 +7,14 @@
 5. Users can check report of their income and expenses in weekly.
 6. Users can track their savings.  
 # Technology 
-###### - WPF
+WPF
 # Team Members
-###### + Lim Seang 
-###### + Nov Dara 
-###### + Thavrith Lincoln
+Lim Seang 
+Nov Dara 
+Thavrith Lincoln
 # Language Support 
-###### - English 
-###### - Khmer 
+English 
+Khmer 
 # Description 
-###### - An application that will let you manage your income, expenses and savings.
-###### - You can check the report of your transactions weekly.                                                               
+An application that will let you manage your income, expenses and savings.
+You can check the report of your transactions weekly.                                                               
