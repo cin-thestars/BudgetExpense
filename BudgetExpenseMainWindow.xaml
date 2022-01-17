@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetExpense"
+        xmlns:vm="clr-namespace:BudgetExpense.ViewModel"
         mc:Ignorable="d"
         Title="Budget Expense" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="#FF3A3C3B" Foreground="White" FontFamily="Cambria" FontSize="18" >
+    <Window.DataContext>
+        <vm:TransactionViewModel/>
+    </Window.DataContext>
     <Grid>
         <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="#FF3A3C3B" >
             <TabControl.Resources>
@@ -164,8 +168,24 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <DataGrid HeadersVisibility="None" Background="#FF3A3C3B" Grid.ColumnSpan="2">
-                                
+                            <DataGrid HeadersVisibility="All" Background="#FF3A3C3B" RowBackground="Gray" AlternatingRowBackground="White" Grid.ColumnSpan="2" 
+                                      AutoGenerateColumns="False" ItemsSource="{Binding Transactions}">
+                                <DataGrid.Resources>
+                                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}"
+                                           TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="Background" Value="DarkGreen"/>
+                                    </Style>
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Incomes" Binding="{Binding Incomes}" />
+                                    <DataGridTemplateColumn Header="Expenses">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Expenses}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
                             </DataGrid>
 
                             <Canvas Grid.ColumnSpan="2" Grid.RowSpan="2">
