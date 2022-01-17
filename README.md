@@ -1,4 +1,4 @@
-
+<img src="/docs/students.png" style="width: 100px"/>
 # Feature
 1. Provided the tools for users to manage their income, expenses and savings.  
 2. Users can select the catagory, date and add note of their income, expenses and savings. 
