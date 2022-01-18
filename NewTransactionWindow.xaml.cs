@@ -10,30 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BudgetExpense.ViewModel;
+
 namespace BudgetExpense
 {
     /// <summary>
-    /// Interaction logic for BudgetExpenseMainWindow.xaml
+    /// Interaction logic for NewTransactionWindow.xaml
     /// </summary>
-    public partial class BudgetExpenseMainWindow : Window
+    public partial class NewTransactionWindow : Window
     {
-        public BudgetExpenseMainWindow()
+        public NewTransactionWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            NewTransactionWindow ntw = new NewTransactionWindow();
-            ntw.Show();
         }
     }
 }

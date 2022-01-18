@@ -8,9 +8,6 @@
         mc:Ignorable="d"
         Title="Budget Expense" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="#FF3A3C3B" Foreground="White" FontFamily="Cambria" FontSize="18" >
-    <Window.DataContext>
-        <vm:TransactionViewModel/>
-    </Window.DataContext>
     <Grid>
         <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="#FF3A3C3B" >
             <TabControl.Resources>
@@ -167,6 +164,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
+                            <Grid.DataContext>
+                                <vm:TransactionViewModel/>
+                            </Grid.DataContext>
 
                             <DataGrid HeadersVisibility="All" Background="#FF3A3C3B" RowBackground="Gray" AlternatingRowBackground="White" Grid.ColumnSpan="2" 
                                       AutoGenerateColumns="False" ItemsSource="{Binding Transactions}">
@@ -191,8 +191,8 @@
                             <Canvas Grid.ColumnSpan="2" Grid.RowSpan="2">
                                 <Button Style="{StaticResource btnRound}" Canvas.Left="10" Canvas.Bottom="10" Content="KH" 
                                         Foreground="White"/>
-                                <Button Style="{StaticResource btnRound}" Canvas.Right="10" Canvas.Bottom="10" Content="+" Foreground="White" Width="30"
-                                        Height="30"/>
+                                <Button Name="AddButton" Style="{StaticResource btnRound}" Canvas.Right="10" Canvas.Bottom="10" Content="+" Foreground="White" Width="30"
+                                        Height="30" Click="AddButton_Click"/>
                             </Canvas>
                             
                         </Grid>
