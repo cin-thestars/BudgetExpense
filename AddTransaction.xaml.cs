@@ -10,30 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BudgetExpense
 {
     /// <summary>
-    /// Interaction logic for BudgetExpenseMainWindow.xaml
+    /// Interaction logic for AddTransaction.xaml
     /// </summary>
-    public partial class BudgetExpenseMainWindow : Window
+    public partial class AddTransaction : Window
     {
-        public BudgetExpenseMainWindow()
+        public AddTransaction()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Add_NewTransaction(object sender, RoutedEventArgs e)
-        {
-            AddTransaction at = new AddTransaction();
-            at.Show();
         }
     }
 }

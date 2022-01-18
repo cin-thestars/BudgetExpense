@@ -196,7 +196,8 @@
                                 <Button Style="{StaticResource btnRound}" Canvas.Left="10" 
                                         Canvas.Bottom="10" Content="KH" 
                                         Foreground="Black"/>
-                                <Button Style="{StaticResource btnRound}" Canvas.Right="10" 
+                                <Button Click="Add_NewTransaction"
+                                        Style="{StaticResource btnRound}" Canvas.Right="10" 
                                         Canvas.Bottom="10" Content="+" Foreground="Black" Width="30"
                                         Height="30"/>
                             </Canvas>

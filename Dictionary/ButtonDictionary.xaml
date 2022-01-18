@@ -39,16 +39,16 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="#FF3A3C3B"/>
+                            <Setter Property="Background" TargetName="border" Value="#5851D8"/>
                             <Setter Property="BorderBrush" TargetName="border" Value="#EAB01E"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="#FF3A3C3B"/>
+                            <Setter Property="Background" TargetName="border" Value="#5851D8"/>
                             <Setter Property="BorderBrush" TargetName="border" Value="#F1CA68"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" TargetName="border" Value="Black"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="Black"/>
+                            <Setter Property="Background" TargetName="border" Value="#5851D8"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#5851D8"/>
                             <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="white"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
