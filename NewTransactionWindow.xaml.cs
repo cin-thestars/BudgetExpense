@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BudgetExpense.Model;
 namespace BudgetExpense
 {
     /// <summary>
@@ -25,6 +25,15 @@ namespace BudgetExpense
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var ExpenseCategoryCb = sender as ComboBox;
+            if(ExpenseCategoryCb != null)
+            {
+                var gt = ExpenseCategoryCb.SelectedItem as ExpenseCategoryModel;
+            }
+        }
+
+        private void ExpenseCategoryComboBox_ContextMenuClosing(object sender, ContextMenuEventArgs e)
         {
 
         }

@@ -8,6 +8,9 @@
         mc:Ignorable="d"
         Title="Budget Expense" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="#FF3A3C3B" Foreground="White" FontFamily="Cambria" FontSize="18" >
+    <Window.DataContext>
+        <vm:ExpenseCategoryViewModel/>
+    </Window.DataContext>
     <Grid>
         <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="#FF3A3C3B" >
             <TabControl.Resources>
@@ -167,7 +170,7 @@
                             <Grid.DataContext>
                                 <vm:TransactionViewModel/>
                             </Grid.DataContext>
-
+                            
                             <DataGrid HeadersVisibility="All" Background="#FF3A3C3B" RowBackground="Gray" AlternatingRowBackground="White" Grid.ColumnSpan="2" 
                                       AutoGenerateColumns="False" ItemsSource="{Binding Transactions}">
                                 <DataGrid.Resources>
@@ -177,11 +180,18 @@
                                     </Style>
                                 </DataGrid.Resources>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Incomes" Binding="{Binding Incomes}" />
-                                    <DataGridTemplateColumn Header="Expenses">
+                                    <DataGridTextColumn Header="Incomes" Width="auto" Binding="{Binding Incomes}"  />
+                                    <DataGridTemplateColumn Header="Expenses" Width="auto">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding Expenses}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Category" Width="auto">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding expense}"/>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
