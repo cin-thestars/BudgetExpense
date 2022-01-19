@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BudgetExpense.ViewModel;
 
 namespace BudgetExpense
 {
@@ -33,7 +34,19 @@ namespace BudgetExpense
         private void Add_NewTransaction(object sender, RoutedEventArgs e)
         {
             AddTransaction at = new AddTransaction();
-            at.Show();
+            if (at.ShowDialog() == true)
+            {
+                var dc = at.Resources["incomeVM"] as CategoryAddViewModel;
+                if(dc != null)
+                {
+                    MessageBox.Show(""+dc.ExpData.Amount);
+                    var tvm = DataContext as TransactionViewModel;
+                    if(tvm != null)
+                    {
+                        tvm.AddExpanse(dc.ExpData);
+                    }
+                }
+            }
         }
     }
 }

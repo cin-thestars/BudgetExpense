@@ -11,6 +11,9 @@
     <Window.DataContext>
         <vm:TransactionViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <local:AddTransaction x:Key="myRes1"/>
+    </Window.Resources>
     <Grid>
         <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="WhiteSmoke" >
             <TabControl.Resources>

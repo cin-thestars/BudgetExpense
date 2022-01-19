@@ -23,5 +23,23 @@ namespace BudgetExpense
         {
             InitializeComponent();
         }
+
+        private void DoSave(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
+        }
+
+        private void DoCancel(object sender, RoutedEventArgs e)
+        {
+            DialogResult= false;
+            Close();
+        }
+
+        private void TabItemSelected(object sender, RoutedEventArgs e)
+        {
+            var tc = sender as TabControl;
+            MessageBox.Show(""+tc.SelectedIndex);
+        }
     }
 }
