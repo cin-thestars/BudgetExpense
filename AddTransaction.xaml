@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetExpense"
         xmlns:vm="clr-namespace:BudgetExpense.ViewModel"
+        xmlns:model="clr-namespace:BudgetExpense.Model"
         mc:Ignorable="d"
         Title="AddTransaction" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="WhiteSmoke" Foreground="Black" FontFamily="Cambria" FontSize="18" >
-    
+    <Window.Resources>
+        <vm:CategoryAddViewModel x:Key="incomeVM"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
@@ -66,7 +69,7 @@
                         </Grid.RowDefinitions>
 
                         <Grid.DataContext>
-                            <vm:CategoryAddViewModel/>
+                            <DynamicResource ResourceKey="incomeVM"/>
                         </Grid.DataContext>
 
                         <!-- Label -->
@@ -76,17 +79,17 @@
                         <Label Content="Date" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                         <!-- textbox Itemname -->
-                        <TextBox Name="txtItemnameExpense" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
+                        <TextBox Text="{Binding ExpData.Name}" Name="txtItemnameExpense" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
 
                         <!-- Combobox -->
-                        <ComboBox Name="comboCategoryExpense" ItemsSource="{Binding Path=categoryAdds}" Grid.Row="3" FontSize="20" VerticalAlignment="Center"/>
+                        <ComboBox SelectedItem="{Binding ExpData.Category}" Name="comboCategoryExpense" ItemsSource="{Binding Path=categoryAdds}" Grid.Row="3" FontSize="20" VerticalAlignment="Center"/>
 
                         <!-- Textbox amount -->
-                        <TextBox Name="txtAmountExpense" Grid.Row="5" FontSize="20" Text="USD" 
+                        <TextBox Name="txtAmountExpense" Grid.Row="5" FontSize="20" Text="{Binding ExpData.Amount}" 
                                  VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
 
                         <!-- DatePicker -->
-                        <DatePicker Name="datePickExpense" Grid.Row="7" FontSize="20" VerticalAlignment="Center"/>
+                        <DatePicker SelectedDate="{Binding ExpData.Date}" Name="datePickExpense" Grid.Row="7" FontSize="20" VerticalAlignment="Center"/>
                     </Grid>
                 </TabItem>
                 
@@ -177,11 +180,11 @@
         <Button x:Name="btnSave" Content="Save" Background="WhiteSmoke" BorderBrush="#FF3A3C3B"
                 BorderThickness="1" Foreground="Black" Grid.Row="4" VerticalAlignment="Center"
                 HorizontalAlignment="Right" FontSize="25" Style="{StaticResource btnRound1 }"
-                Margin="0,0,20,0" Click="Save" />
+                Margin="0,0,20,0" Click="DoSave"/>
         <Button x:Name="btnCancel" Content="Cancel" Background="WhiteSmoke" BorderBrush="#FF3A3C3B"
                 BorderThickness="1" Foreground="Black" Grid.Row="4" VerticalAlignment="Center"
                 HorizontalAlignment="Left" FontSize="25" Style="{StaticResource btnRound1 }"
-                Margin="10,0,0,0" Click="Cancel"/>
+                Margin="10,0,0,0" Click="DoCancel"/>
 
 
     </Grid>

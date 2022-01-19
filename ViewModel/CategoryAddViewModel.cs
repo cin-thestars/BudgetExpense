@@ -19,6 +19,7 @@ namespace BudgetExpense.ViewModel
         {
             categoryAdds = new ObservableCollection<CategoryExpenseAdd>(categoryExpenseList.CategoryModels);
         }
+        public ExpData ExpData { get; set; } = new ExpData();
 
     }
 }

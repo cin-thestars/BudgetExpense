@@ -19,7 +19,13 @@ namespace BudgetExpense.ViewModel
             Transactions = new ObservableCollection<Transaction>(transactionList.Transactions);
         }
 
-        public ExpData ExpData { get; set; } = new ExpData();
-
+        internal void AddExpanse(ExpData expData)
+        {
+            Transactions.Add(new Transaction
+            {
+                Expenses = expData.Amount,
+                Incomes = 0
+            });
+        }
     }
 }

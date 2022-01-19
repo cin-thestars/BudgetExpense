@@ -12,6 +12,6 @@ namespace BudgetExpense.Model
         public string Name { get; set; } = "";
         public string Category { get; set; } = string.Empty;
         public double Amount { get; set; } = 0;
-        public DateTime DateTime { get; set; } = DateTime.Now;
+        public DateTime Date { get; set; }= DateTime.Now;
     }
 }
