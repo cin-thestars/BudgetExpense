@@ -177,7 +177,7 @@
                 BorderThickness="1" Foreground="Black" Grid.Row="4" VerticalAlignment="Center"
                 HorizontalAlignment="Right" FontSize="25" Style="{StaticResource btnRound1 }"
                 Margin="0,0,20,0"/>
-        <Button Click="Cancel" x:Name="btnCancel" Content="Cancel" Background="WhiteSmoke" BorderBrush="#FF3A3C3B"
+        <Button x:Name="btnCancel" Content="Cancel" Background="WhiteSmoke" BorderBrush="#FF3A3C3B"
                 BorderThickness="1" Foreground="Black" Grid.Row="4" VerticalAlignment="Center"
                 HorizontalAlignment="Left" FontSize="25" Style="{StaticResource btnRound1 }"
                 Margin="10,0,0,0"/>
