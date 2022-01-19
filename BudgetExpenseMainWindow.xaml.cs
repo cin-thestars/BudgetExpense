@@ -33,7 +33,17 @@ namespace BudgetExpense
         private void Add_NewTransaction(object sender, RoutedEventArgs e)
         {
             AddTransaction at = new AddTransaction();
-            at.Show();
+            var obj = new { };
+            at.DataContext = obj;
+            if(at.ShowDialog() == true)
+            {
+               //add obj to list
+                
+            }
+
+
+
+
         }
     }
 }

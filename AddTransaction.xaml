@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="AddTransaction" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="WhiteSmoke" Foreground="Black" FontFamily="Cambria" FontSize="18" >
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
@@ -176,11 +177,11 @@
         <Button x:Name="btnSave" Content="Save" Background="WhiteSmoke" BorderBrush="#FF3A3C3B"
                 BorderThickness="1" Foreground="Black" Grid.Row="4" VerticalAlignment="Center"
                 HorizontalAlignment="Right" FontSize="25" Style="{StaticResource btnRound1 }"
-                Margin="0,0,20,0"/>
-        <Button Click="cancel" x:Name="btnCancel" Content="Cancel" Background="WhiteSmoke" BorderBrush="#FF3A3C3B"
+                Margin="0,0,20,0" Click="Save" />
+        <Button x:Name="btnCancel" Content="Cancel" Background="WhiteSmoke" BorderBrush="#FF3A3C3B"
                 BorderThickness="1" Foreground="Black" Grid.Row="4" VerticalAlignment="Center"
                 HorizontalAlignment="Left" FontSize="25" Style="{StaticResource btnRound1 }"
-                Margin="10,0,0,0"/>
+                Margin="10,0,0,0" Click="Cancel"/>
 
 
     </Grid>

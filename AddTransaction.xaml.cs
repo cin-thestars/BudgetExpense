@@ -23,5 +23,17 @@ namespace BudgetExpense
         {
             InitializeComponent();
         }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
+        }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            DialogResult=false;
+            Close();
+        }
     }
 }

@@ -18,5 +18,8 @@ namespace BudgetExpense.ViewModel
         {
             Transactions = new ObservableCollection<Transaction>(transactionList.Transactions);
         }
+
+        public ExpData ExpData { get; set; } = new ExpData();
+
     }
 }
