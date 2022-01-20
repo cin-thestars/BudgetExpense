@@ -17,175 +17,78 @@
             <RowDefinition Height="5"/>
             <RowDefinition Height="50"/>
             <RowDefinition/>
-            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         
         <!-- Border of ADD -->
-        <Border Grid.Row="1" BorderBrush="#FF3A3C3B" BorderThickness="1" CornerRadius="10" Margin="2"/>
-        <Label Grid.Row="1" Content="Add Transaction" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-        
-        <!-- Border of Tab Control -->
-        <Border Grid.Row="2" BorderBrush="#FF3A3C3B" BorderThickness="1" CornerRadius="10" Margin="2">
-            <TabControl Grid.Row="2" HorizontalAlignment="Center" Margin="10">
-                <TabControl.Resources>
-                    <Style TargetType="TabItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="TabItem">
-                                    <Border Name="Border" BorderThickness="1" BorderBrush="#FF3A3C3B" 
-                                        CornerRadius="8" Margin="10">
-                                        <ContentPresenter x:Name="ContentSite"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        ContentSource="Header"
-                                        Margin="10,2"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Border" Property="Background" Value="whitesmoke" />
-                                        </Trigger>
-                                        <Trigger Property="IsSelected" Value="False">
-                                            <Setter TargetName="Border" Property="Background" Value="gray" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </TabControl.Resources>
+        <Border Grid.Row="1" BorderBrush="#FF3A3C3B" 
+                BorderThickness="1" CornerRadius="10" Margin="3"/>
+        <Label Grid.Row="1" Content="Add Transaction" 
+               VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
 
-                <!-- Tabitem Expense -->
-                <TabItem Header="Expense" Width="150" >
+        <!-- Border UI -->
+        <Border Grid.Row="2" BorderBrush="#FF3A3C3B" 
+                BorderThickness="1" CornerRadius="10" Margin="3">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!-- Label-->
+                <Label Content="Item Name" Grid.Row="0" FontSize="22" VerticalAlignment="Center" 
+                       HorizontalAlignment="Left" FontWeight="SemiBold"/>
+                <Label Content="Type" Grid.Row="2" FontSize="22" VerticalAlignment="Center"
+                       HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                <Label Content="Note" Grid.Row="4" FontSize="22" VerticalAlignment="Center"
+                       HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                <Label Content="Amount" Grid.Row="6" FontSize="22" VerticalAlignment="Center"
+                       HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                <Label Content="Date" Grid.Row="8" FontSize="22" VerticalAlignment="Center"
+                       HorizontalAlignment="Left" FontWeight="DemiBold"/>
+
+                <!-- Textbox -->
+                <TextBox x:Name="txtBoxItemName" Grid.Row="1" FontSize="22" VerticalAlignment="Center"
+                         HorizontalContentAlignment="Left" Style="{StaticResource rounded}" />
+                <TextBox x:Name="txtBoxNote" Grid.Row="5" FontSize="22" VerticalAlignment="Center"
+                         HorizontalContentAlignment="Left" Style="{StaticResource rounded}"/>
+                <TextBox x:Name="txtBoxAmount" Grid.Row="7" FontSize="22" VerticalAlignment="Center"
+                         HorizontalContentAlignment="Left" Style="{StaticResource rounded}"/>
+
+                <!-- ComboBox -->
+                <ComboBox x:Name="comboBoxType" Grid.Row="3" FontSize="22" VerticalAlignment="Center"
+                          HorizontalContentAlignment="Left"/>
+
+                <!-- Datepicker -->
+                <DatePicker x:Name="datePick" FontSize="22" Grid.Row="9" VerticalAlignment="Center"
+                            BorderBrush="Black" BorderThickness="1" Background="Gray"/>
+
+                <!-- Border for BTN -->
+                <Border Grid.Row="10" >
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid.DataContext>
-                            <DynamicResource ResourceKey="incomeVM"/>
-                        </Grid.DataContext>
-
-                        <!-- Label -->
-                        <Label Content="Item Name" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Label Content="Category" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Label Content="Amount" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Label Content="Date" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-
-                        <!-- textbox Itemname -->
-                        <TextBox Text="{Binding ExpData.Name}" Name="txtItemnameExpense" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
-
-                        <!-- Combobox -->
-                        <ComboBox SelectedItem="{Binding ExpData.Category}" Name="comboCategoryExpense" ItemsSource="{Binding Path=categoryAdds}" Grid.Row="3" FontSize="20" VerticalAlignment="Center"/>
-
-                        <!-- Textbox amount -->
-                        <TextBox Name="txtAmountExpense" Grid.Row="5" FontSize="20" Text="{Binding ExpData.Amount}" 
-                                 VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
-
-                        <!-- DatePicker -->
-                        <DatePicker SelectedDate="{Binding ExpData.Date}" Name="datePickExpense" Grid.Row="7" FontSize="20" VerticalAlignment="Center"/>
-                    </Grid>
-                </TabItem>
-                
-                <!--Tabitem Income -->
-                <TabItem Header="Income" Width="150">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid.DataContext>
-                            <vm:CategoryAddIncomeViewModel/>
-                        </Grid.DataContext>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
                         
-                        <!-- Label -->
-                        <Label Content="Item Name" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Label Content="Category" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Label Content="Amount" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Label Content="Date" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <!-- Button -->
+                        <Button x:Name="btnSave" Content="Save" Grid.Column="1" Width="100" Height="70" Style="{StaticResource btnRound1}"/>
+                        <Button x:Name="btnCancel" Content="Cancel" Width="100" Height="70" Style="{StaticResource btnRound1}"/>
 
-                        <!-- textbox Itemname -->
-                        <TextBox Name="txtItemnameIncome" 
-                                 Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
-
-                        
-                        <!-- Combobox -->
-                        <ComboBox Name="comboCategoryIncome" 
-                                  ItemsSource="{Binding Path=categoryIncomeAdds}" 
-                                  Grid.Row="3" FontSize="20" VerticalAlignment="Center"/>
-
-                        <!-- Textbox amount -->
-                        <TextBox Name="txtAmountIncome" Grid.Row="5" FontSize="20" Text="USD" 
-                                 VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
-
-                        <!-- DatePicker -->
-                        <DatePicker Name="datePickIncome" Grid.Row="7" FontSize="20" VerticalAlignment="Center"/>
                     </Grid>
-                </TabItem>
+                </Border>
 
-                <!-- Tabitem Saving -->
-                <TabItem Header="Saving" Width="150">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid.DataContext>
-                            <vm:CategorySavingAddViewModel/>
-                        </Grid.DataContext>
-                        
-                        <!-- Label -->
-                        <Label Content="Item Name" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Label Content="Category" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Label Content="Amount" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Label Content="Date" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-
-                        <!-- textbox Itemname -->
-                        <TextBox Name="txtItemNameSaving" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
-
-                        <!-- Combobox -->
-                        <ComboBox Name="comboCategorySaving" ItemsSource="{Binding Path=categorySavingAdds}" Grid.Row="3" FontSize="20" VerticalAlignment="Center"/>
-
-                        <!-- Textbox amount -->
-                        <TextBox Name="txtAmountSaving" Grid.Row="5" FontSize="20" Text="USD" 
-                                 VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
-
-                        <!-- DatePicker -->
-                        <DatePicker Name="datePickSaving" Grid.Row="7" FontSize="20" VerticalAlignment="Center"/>
-                    </Grid>
-                </TabItem>
-            </TabControl>
+            </Grid>
         </Border>
-
-        <Button x:Name="btnSave" Content="Save" Background="WhiteSmoke" BorderBrush="#FF3A3C3B"
-                BorderThickness="1" Foreground="Black" Grid.Row="4" VerticalAlignment="Center"
-                HorizontalAlignment="Right" FontSize="25" Style="{StaticResource btnRound1 }"
-                Margin="0,0,20,0" Click="DoSave"/>
-        <Button x:Name="btnCancel" Content="Cancel" Background="WhiteSmoke" BorderBrush="#FF3A3C3B"
-                BorderThickness="1" Foreground="Black" Grid.Row="4" VerticalAlignment="Center"
-                HorizontalAlignment="Left" FontSize="25" Style="{StaticResource btnRound1 }"
-                Margin="10,0,0,0" Click="DoCancel"/>
-
-
+        
     </Grid>
 </Window>

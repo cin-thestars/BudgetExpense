@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BudgetExpense.Model
 {
+    [Serializable]
     public class ExpData
     {
         public string Type { get; set; } = "Expense";
