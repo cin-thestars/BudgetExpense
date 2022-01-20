@@ -6,4 +6,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Tutorials\DeepBindings\Model\" />
+    <Folder Include="Tutorials\DeepBindings\ViewModel\" />
+  </ItemGroup>
+
 </Project>
