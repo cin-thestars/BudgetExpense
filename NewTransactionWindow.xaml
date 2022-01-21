@@ -7,6 +7,9 @@
         xmlns:vm="clr-namespace:BudgetExpense.ViewModel"
         mc:Ignorable="d"
         Title="New Transaction" Height="700" Width="500">
+    <Window.DataContext>
+        <vm:TransactionViewModel></vm:TransactionViewModel>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -17,122 +20,51 @@
                    HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
         </Border>
         <Border Grid.Row="1" CornerRadius="5" Margin="1,1,1,2" BorderBrush="Black" BorderThickness="3">
-            <TabControl HorizontalAlignment="Center" FontSize="20">
-                <TabItem Header="Expenses" Width="150">
-                    <Grid>
-                        <Grid.DataContext>
-                            <vm:ExpenseCategoryViewModel/>
-                        </Grid.DataContext>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Label Content="Item Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></TextBox>
-                        <Label Content="Category" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <ComboBox ItemsSource="{Binding Path=expenseCategories}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="ComboBox_SelectionChanged" ContextMenuClosing="ExpenseCategoryComboBox_ContextMenuClosing"></ComboBox>
-                        <Label Content="Amount" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"></TextBox>
-                        <Label Content="Date" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <DatePicker Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"></DatePicker>
-                        <Button Content="Cancel" Grid.Row="8" Grid.Column="0" 
-                                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                Height="60" Width="100"
-                                FontSize="20"></Button>
-                        <Button Content="Save" Grid.Row="8" Grid.Column="1" 
-                                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                Height="60" Width="100"
-                                FontSize="20"></Button>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Income" Width="150">
-                    <Grid>
-                        <Grid.DataContext>
-                            <vm:ExpenseCategoryViewModel/>
-                        </Grid.DataContext>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Label Content="Item Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></TextBox>
-                        <Label Content="Category" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <ComboBox ItemsSource="{Binding Path=expenseCategories}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="ComboBox_SelectionChanged" ContextMenuClosing="ExpenseCategoryComboBox_ContextMenuClosing"></ComboBox>
-                        <Label Content="Amount" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"></TextBox>
-                        <Label Content="Date" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <DatePicker Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"></DatePicker>
-                        <Button Content="Cancel" Grid.Row="8" Grid.Column="0" 
-                                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                Height="60" Width="100"
-                                FontSize="20"></Button>
-                        <Button Content="Save" Grid.Row="8" Grid.Column="1" 
-                                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                Height="60" Width="100"
-                                FontSize="20"></Button>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Saving" Width="150">
-                    <Grid>
-                        <Grid.DataContext>
-                            <vm:ExpenseCategoryViewModel/>
-                        </Grid.DataContext>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Label Content="Item Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></TextBox>
-                        <Label Content="Category" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <ComboBox ItemsSource="{Binding Path=expenseCategories}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="ComboBox_SelectionChanged" ContextMenuClosing="ExpenseCategoryComboBox_ContextMenuClosing"></ComboBox>
-                        <Label Content="Amount" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"></TextBox>
-                        <Label Content="Date" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"></Label>
-                        <DatePicker Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"></DatePicker>
-                        <Button Content="Cancel" Grid.Row="8" Grid.Column="0" 
-                                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                Height="60" Width="100"
-                                FontSize="20"></Button>
-                        <Button Content="Save" Grid.Row="8" Grid.Column="1" 
-                                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                Height="60" Width="100"
-                                FontSize="20"></Button>
-                    </Grid>
-                </TabItem>
-            </TabControl>
+            
+            <Grid>
+                <!-- Grid.Row -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- Grid.Column -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!-- Label -->
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Item Name" FontSize="14"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Category" FontSize="14"></Label>
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Note" FontSize="14"></Label>
+                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="Amount" FontSize="14"></Label>
+                <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Content="Date" FontSize="14"></Label>
+                <!-- Textbox -->
+                <TextBox Name="txtItemName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></TextBox>
+                <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></TextBox>
+                <TextBox Name="txtAmount" Text="{Binding AddTransactionData.Amount}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></TextBox>
+                <!-- Combobox -->
+                <ComboBox ItemsSource="{Binding categoryTypes}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></ComboBox>
+                <!-- DatePicker -->
+                <DatePicker Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></DatePicker>
+                <!-- Buttons -->
+                <Button Name="DoCancelBtn" Grid.Row="10" Grid.Column="0" 
+                        Content="Cancel" FontSize="20"
+                        VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Width="100" Height="60" Click="DoCancelBtn_Click"></Button>
+                <Button Name="DoSaveBtn" Grid.Row="10" Grid.Column="1" 
+                        Content="Save" FontSize="20"
+                        VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Width="100" Height="60" Click="DoSaveBtn_Click"></Button>
+            </Grid>
         </Border>
     </Grid>
 </Window>

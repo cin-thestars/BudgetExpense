@@ -26,16 +26,28 @@ namespace BudgetExpense
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var ExpenseCategoryCb = sender as ComboBox;
+            /*var ExpenseCategoryCb = sender as ComboBox;
             if(ExpenseCategoryCb != null)
             {
                 var gt = ExpenseCategoryCb.SelectedItem as ExpenseCategoryModel;
-            }
+            }*/
         }
 
         private void ExpenseCategoryComboBox_ContextMenuClosing(object sender, ContextMenuEventArgs e)
         {
 
+        }
+
+        private void DoCancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
+        }
+
+        private void DoSaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
         }
     }
 }

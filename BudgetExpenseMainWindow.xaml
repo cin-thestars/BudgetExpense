@@ -9,7 +9,7 @@
         Title="Budget Expense" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="#FF3A3C3B" Foreground="White" FontFamily="Cambria" FontSize="18" >
     <Window.DataContext>
-        <vm:ExpenseCategoryViewModel/>
+        <vm:TransactionViewModel/>
     </Window.DataContext>
     <Grid>
         <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="#FF3A3C3B" >
@@ -167,10 +167,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Grid.DataContext>
-                                <vm:TransactionViewModel/>
-                            </Grid.DataContext>
-                            
+
                             <DataGrid HeadersVisibility="All" Background="#FF3A3C3B" RowBackground="Gray" AlternatingRowBackground="White" Grid.ColumnSpan="2" 
                                       AutoGenerateColumns="False" ItemsSource="{Binding Transactions}">
                                 <DataGrid.Resources>
@@ -180,7 +177,7 @@
                                     </Style>
                                 </DataGrid.Resources>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Incomes" Width="auto" Binding="{Binding Incomes}"  />
+                                    <DataGridTextColumn Header="Incomes" Width="auto" Binding="{Binding Income}"  />
                                     <DataGridTemplateColumn Header="Expenses" Width="auto">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>

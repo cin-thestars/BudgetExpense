@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BudgetExpense.ViewModel;
+using BudgetExpense.Model;
 namespace BudgetExpense
 {
     /// <summary>
@@ -33,7 +34,15 @@ namespace BudgetExpense
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             NewTransactionWindow ntw = new NewTransactionWindow();
-            ntw.Show();
+            if(ntw.ShowDialog() == true)
+            {
+                var dc = DataContext as TransactionViewModel;
+                if(dc != null)
+                {
+                    var tvm = DataContext as Transaction;
+                    MessageBox.Show(""+ tvm.Income);
+                }
+            }
         }
     }
 }
