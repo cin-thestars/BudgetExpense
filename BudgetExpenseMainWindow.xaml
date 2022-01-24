@@ -8,8 +8,9 @@
         mc:Ignorable="d"
         Title="Budget Expense" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="WhiteSmoke" Foreground="Black" FontFamily="Cambria" FontSize="18" >
+
     <Window.DataContext>
-        <vm:TransactionViewModel/>
+        <vm:Transaction_Add_View_Model/>
     </Window.DataContext>
     <Grid>
         <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="WhiteSmoke" >
@@ -195,8 +196,8 @@
                             <Canvas Grid.ColumnSpan="2" Grid.RowSpan="2">
                                 <Button Style="{StaticResource btnRound}" Canvas.Left="10" 
                                         Canvas.Bottom="10" Content="KH" 
-                                        Foreground="Black"/>
-                                <Button Click="Add_NewTransaction"
+                                        Foreground="Black" Click="Language_ButtonClick"/>
+                                <Button Click="Add_NewTransaction_Button"
                                         Style="{StaticResource btnRound}" Canvas.Right="10" 
                                         Canvas.Bottom="10" Content="+" Foreground="Black" Width="30"
                                         Height="30"/>

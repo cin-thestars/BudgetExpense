@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BudgetExpense.ViewModel;
+using BudgetExpense.Model;
 
 namespace BudgetExpense
 {
@@ -25,15 +27,23 @@ namespace BudgetExpense
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Add_NewTransaction_Button(object sender, RoutedEventArgs e)
         {
-
+            AddTransaction ntw = new AddTransaction();
+            if (ntw.ShowDialog() == true)
+            {
+                var dc = DataContext as Transaction_Add_View_Model;
+                if (dc != null)
+                {
+                    var tvm = DataContext as Transaction_Add;
+                    MessageBox.Show("" + tvm.Amount);
+                }
+            }
         }
 
-        private void Add_NewTransaction(object sender, RoutedEventArgs e)
+        private void Language_ButtonClick(object sender, RoutedEventArgs e)
         {
-            AddTransaction at = new AddTransaction();
-            at.Show();
+
         }
     }
 }
