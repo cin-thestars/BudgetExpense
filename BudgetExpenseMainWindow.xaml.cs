@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BudgetExpense.ViewModel;
+using BudgetExpense.Model;
 
 namespace BudgetExpense
 {
@@ -26,27 +27,23 @@ namespace BudgetExpense
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Add_NewTransaction_Button(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Add_NewTransaction(object sender, RoutedEventArgs e)
-        {
-            AddTransaction at = new AddTransaction();
-            if (at.ShowDialog() == true)
+            AddTransaction ntw = new AddTransaction();
+            if (ntw.ShowDialog() == true)
             {
-                var dc = at.Resources["incomeVM"] as CategoryAddViewModel;
-                if(dc != null)
+                var dc = DataContext as Transaction_Add_View_Model;
+                if (dc != null)
                 {
-                    MessageBox.Show(""+dc.ExpData.Amount);
-                    var tvm = DataContext as TransactionViewModel;
-                    if(tvm != null)
-                    {
-                        tvm.AddExpanse(dc.ExpData);
-                    }
+                    var tvm = DataContext as Transaction_Add;
+                    MessageBox.Show("" + tvm.Amount);
                 }
             }
+        }
+
+        private void Language_ButtonClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
