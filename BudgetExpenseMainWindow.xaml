@@ -174,7 +174,7 @@
 
                             <DataGrid HeadersVisibility="All" Background="WhiteSmoke" RowBackground="Gray" 
                                       AlternatingRowBackground="White" Grid.ColumnSpan="2" 
-                                      AutoGenerateColumns="False" ItemsSource="{Binding Transactions}">
+                                      AutoGenerateColumns="False" ItemsSource="{Binding newTransactions}">
                                 <DataGrid.Resources>
                                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}"
                                            TargetType="{x:Type DataGridColumnHeader}">

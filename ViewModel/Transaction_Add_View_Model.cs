@@ -15,42 +15,49 @@ namespace BudgetExpense.ViewModel
         public ObservableCollection<Transaction_Add> transaction_Adds { get; set; }
         private TypeList Type_List = new TypeList();
 
-        public ObservableCollection<Transaction> Transactions { get; set; }
-        private TransactionList transactionList = new TransactionList();
+        public ObservableCollection<NewTransaction> newTransactions { get; set; }
+        public NewTransactionList newTransaction = new NewTransactionList();
 
         public Transaction_Add_View_Model()
         {
-            Transactions = new ObservableCollection<Transaction>(transactionList.Transactions);
+            newTransactions = new ObservableCollection<NewTransaction>(newTransaction.newTransactions);
             transaction_Adds = new ObservableCollection<Transaction_Add>(Type_List.typeList);
         }
 
         public Transaction_Add Transaction_Add { get; set; } = new Transaction_Add();
 
-        public void AddExpense(Transaction_Add addTransactionData)
+        public void AddExpense(Transaction_Add transactionData)
         {
-            Transactions.Add(new Transaction
+            newTransactions.Add(new NewTransaction
             {
-                Expenses = addTransactionData.Amount,
+                Expense = transactionData.Amount,
                 Income = 0,
-                Saving = 0
+                Saving = 0,
+                ItemName = transactionData.ItemName,
+                Note = transactionData.Note,
+                //Date = transactionData.Date
             });
         }
-        public void AddIncome(Transaction_Add addTransactionData)
+        public void AddIncome(Transaction_Add transactionData)
         {
-            Transactions.Add(new Transaction
+            newTransactions.Add(new NewTransaction
             {
-                Expenses = 0,
-                Income = addTransactionData.Amount,
-                Saving = 0
+                Expense = 0,
+                Income = transactionData.Amount,
+                Saving = 0,
+                ItemName = transactionData.ItemName,
+                Note = transactionData.Note
             });
         }
-        public void AddSaving(Transaction_Add addTransactionData)
+        public void AddSaving(Transaction_Add transactionData)
         {
-            Transactions.Add(new Transaction
+            newTransactions.Add(new NewTransaction
             {
-                Expenses = 0,
+                Expense = 0,
                 Income = 0,
-                Saving = Transaction_Add.Amount
+                Saving = transactionData.Amount,
+                ItemName = transactionData.ItemName,
+                Note = transactionData.Note
             });
         }
 

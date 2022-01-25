@@ -32,11 +32,25 @@ namespace BudgetExpense
             AddTransaction ntw = new AddTransaction();
             if (ntw.ShowDialog() == true)
             {
-                var dc = DataContext as Transaction_Add_View_Model;
+                var dc = ntw.Resources["incomeVM"] as Transaction_Add_View_Model;
                 if (dc != null)
                 {
-                    var tvm = DataContext as Transaction_Add;
-                    MessageBox.Show("" + tvm.Amount);
+                    var tvm = DataContext as Transaction_Add_View_Model;
+                    if (tvm != null)
+                    {
+                        if (dc.Transaction_Add.Type == "Expense")
+                        {
+                            tvm.AddExpense(dc.Transaction_Add);
+                        }
+                        else if (dc.Transaction_Add.Type == "Income")
+                        {
+                            tvm.AddIncome(dc.Transaction_Add);
+                        }
+                        else if (dc.Transaction_Add.Type == "Saving")
+                        {
+                            tvm.AddSaving(dc.Transaction_Add);
+                        }
+                    }
                 }
             }
         }

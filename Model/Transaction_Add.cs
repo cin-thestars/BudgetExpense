@@ -41,6 +41,25 @@ namespace BudgetExpense.Model
 
     }
 
+    public class NewTransaction
+    {
+        public decimal Expense { get; set; } = 0;
+        public decimal Income { get; set; } = 0;
+        public decimal Saving { get; set; } = 0;
+        public string ItemName { get; set; } = "";
+        public string Note { get; set; } = "";
+        public int ID { get; set; } = 1;
+        public string Date { get; set; } = "";
+
+
+    }
+
+    public class NewTransactionList
+    {
+        public List<NewTransaction> newTransactions =
+            new List<NewTransaction> { };
+    }
+
     public class TypeList
     {
         public List<Transaction_Add> typeList { get; set; } =
