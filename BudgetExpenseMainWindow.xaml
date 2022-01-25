@@ -9,8 +9,11 @@
         Title="Budget Expense" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="#FF3A3C3B" Foreground="White" FontFamily="Cambria" FontSize="18" >
     <Window.DataContext>
-        <vm:TransactionViewModel/>
+        <vm:TransactionDataViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <local:NewTransactionWindow x:Key="myRes1"/>
+    </Window.Resources>
     <Grid>
         <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="#FF3A3C3B" >
             <TabControl.Resources>
@@ -169,7 +172,7 @@
                             </Grid.ColumnDefinitions>
 
                             <DataGrid HeadersVisibility="All" Background="#FF3A3C3B" RowBackground="Gray" AlternatingRowBackground="White" Grid.ColumnSpan="2" 
-                                      AutoGenerateColumns="False" ItemsSource="{Binding Transactions}">
+                                      AutoGenerateColumns="False" ItemsSource="{Binding newTransactions}">
                                 <DataGrid.Resources>
                                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}"
                                            TargetType="{x:Type DataGridColumnHeader}">
@@ -177,21 +180,12 @@
                                     </Style>
                                 </DataGrid.Resources>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Incomes" Width="auto" Binding="{Binding Income}"  />
-                                    <DataGridTemplateColumn Header="Expenses" Width="auto">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Expenses}"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTemplateColumn Header="Category" Width="auto">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding expense}"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="ID" Width="auto"/>
+                                    <DataGridTextColumn Header="Item Name" Width="auto" Binding="{Binding ItemName}"/>
+                                    <DataGridTextColumn Header="Income" Width="auto" Binding="{Binding Income}"/>
+                                    <DataGridTextColumn Header="Expenses" Width="auto" Binding="{Binding Expense}"/>
+                                    <DataGridTextColumn Header="Saving" Width="auto" Binding="{Binding Saving}"/>
+                                    <DataGridTextColumn Header="Date" Width="auto"/>
                                 </DataGrid.Columns>
                             </DataGrid>
 

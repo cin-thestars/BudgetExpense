@@ -7,9 +7,9 @@
         xmlns:vm="clr-namespace:BudgetExpense.ViewModel"
         mc:Ignorable="d"
         Title="New Transaction" Height="700" Width="500">
-    <Window.DataContext>
-        <vm:TransactionViewModel></vm:TransactionViewModel>
-    </Window.DataContext>
+    <Window.Resources>
+        <vm:TransactionDataViewModel x:Key="incomeVM"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -41,6 +41,11 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
+                <Grid.DataContext>
+                    <DynamicResource ResourceKey="incomeVM"/>
+                </Grid.DataContext>
+
                 <!-- Label -->
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Item Name" FontSize="14"></Label>
                 <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Category" FontSize="14"></Label>
@@ -48,13 +53,14 @@
                 <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="Amount" FontSize="14"></Label>
                 <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Content="Date" FontSize="14"></Label>
                 <!-- Textbox -->
-                <TextBox Name="txtItemName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></TextBox>
-                <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></TextBox>
-                <TextBox Name="txtAmount" Text="{Binding AddTransactionData.Amount}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></TextBox>
+                <TextBox Name="txtItemName" Text="{Binding TransactionData.ItemName}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></TextBox>
+                <TextBox Name="txtNote" Text="{Binding TransactionData.Note}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></TextBox>
+                <TextBox Name="txtAmount" Text="{Binding TransactionData.Amount}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></TextBox>
                 <!-- Combobox -->
-                <ComboBox ItemsSource="{Binding categoryTypes}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></ComboBox>
+                <ComboBox ItemsSource="{Binding categoryTypeLists}" SelectedItem="{Binding TransactionData.CategoryType}"
+                          Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></ComboBox>
                 <!-- DatePicker -->
-                <DatePicker Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></DatePicker>
+                <DatePicker Grid.Row="9" Text="{Binding TransactionData.Date}" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></DatePicker>
                 <!-- Buttons -->
                 <Button Name="DoCancelBtn" Grid.Row="10" Grid.Column="0" 
                         Content="Cancel" FontSize="20"

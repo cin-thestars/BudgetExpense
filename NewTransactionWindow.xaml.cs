@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BudgetExpense.Model;
+
 namespace BudgetExpense
 {
     /// <summary>
@@ -48,6 +48,11 @@ namespace BudgetExpense
         {
             DialogResult = true;
             Close();
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

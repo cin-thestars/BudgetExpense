@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BudgetExpense.ViewModel;
-using BudgetExpense.Model;
 namespace BudgetExpense
 {
     /// <summary>
@@ -36,11 +36,25 @@ namespace BudgetExpense
             NewTransactionWindow ntw = new NewTransactionWindow();
             if(ntw.ShowDialog() == true)
             {
-                var dc = DataContext as TransactionViewModel;
+                var dc = ntw.Resources["incomeVM"] as TransactionDataViewModel;
                 if(dc != null)
                 {
-                    var tvm = DataContext as Transaction;
-                    MessageBox.Show(""+ tvm.Income);
+                    var tvm = DataContext as TransactionDataViewModel;
+                    if(tvm != null)
+                    {
+                        if(dc.TransactionData.CategoryType == "Expense")
+                        {
+                            tvm.AddExpense(dc.TransactionData);
+                        }
+                        else if (dc.TransactionData.CategoryType == "Income")
+                        {
+                            tvm.AddIncome(dc.TransactionData);
+                        }
+                        else if(dc.TransactionData.CategoryType == "Saving")
+                        {
+                            tvm.AddSaving(dc.TransactionData);
+                        }
+                    }
                 }
             }
         }
