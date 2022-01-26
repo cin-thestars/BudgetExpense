@@ -6,14 +6,11 @@
         xmlns:local="clr-namespace:BudgetExpense"
         xmlns:vm="clr-namespace:BudgetExpense.ViewModel"
         mc:Ignorable="d"
-        Title="Budget Expense" Height="700" Width="500" WindowStartupLocation="CenterScreen"
+        Title="Budget Expense" Height="700" Width="700" WindowStartupLocation="CenterScreen"
         Background="#FF3A3C3B" Foreground="White" FontFamily="Cambria" FontSize="18" >
     <Window.DataContext>
         <vm:TransactionDataViewModel/>
     </Window.DataContext>
-    <Window.Resources>
-        <local:NewTransactionWindow x:Key="myRes1"/>
-    </Window.Resources>
     <Grid>
         <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="#FF3A3C3B" >
             <TabControl.Resources>
@@ -113,7 +110,7 @@
 
                                     <Label x:Name="lblIncome" Content="Income" HorizontalAlignment="Center" VerticalAlignment="Top"
                                            Grid.Row="1" Foreground="White" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
-                                    <Label x:Name="lblShowIncomeValue" Content="0.00" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                    <Label x:Name="lblShowIncomeValue" Content="{Binding TransactionData.Expenses, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                            Grid.Row="0" Foreground="White" FontFamily="Cambria" FontSize="36"/>
                                     <Label x:Name="lblUSDSymbolIncome" Foreground="WhiteSmoke" Grid.Row="0" Content="$" Margin="15,14,0,0" 
                                            FontSize="20" FontFamily="Cambira"/>
@@ -128,13 +125,14 @@
                                         <RowDefinition/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
+                                    
 
                                     <Label x:Name="lblExpense" Content="Expense" HorizontalAlignment="Center" VerticalAlignment="Top"
                                            Grid.Row="1" Foreground="White" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
-                                    <Label x:Name="lblShowExpenseValue" Content="0.00" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                                           Grid.Row="0" Foreground="White" FontFamily="Cambria" FontSize="36"/>
-                                    <Label x:Name="lblExpenseSymbol" Foreground="WhiteSmoke" Grid.Row="0" Content="$" Margin="15,14,0,0" 
-                                           FontSize="20" FontFamily="Cambira"/>
+                                    <Label x:Name="lblShowExpenseValue" Content="{Binding TransactionData.Amount, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                           Grid.Row="0" Foreground="White" FontFamily="Cambria" FontSize="36" Width="auto"/>
+                                    <Label x:Name="lblExpenseSymbol"  Foreground="WhiteSmoke" Grid.Row="0" Content="$" Margin="15,14,0,0" 
+                                           FontSize="20" FontFamily="Cambira" Width="auto"/>
 
                                 </Grid>
                             </Border>
@@ -170,9 +168,10 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
+                            
 
-                            <DataGrid HeadersVisibility="All" Background="#FF3A3C3B" RowBackground="Gray" AlternatingRowBackground="White" Grid.ColumnSpan="2" 
-                                      AutoGenerateColumns="False" ItemsSource="{Binding newTransactions}">
+                            <DataGrid Name="DG" HeadersVisibility="All" Background="#FF3A3C3B" RowBackground="Gray" AlternatingRowBackground="White" Grid.ColumnSpan="2" 
+                                      AutoGenerateColumns="False" ItemsSource="{Binding newTransactions, Mode=TwoWay}">
                                 <DataGrid.Resources>
                                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}"
                                            TargetType="{x:Type DataGridColumnHeader}">
@@ -180,12 +179,16 @@
                                     </Style>
                                 </DataGrid.Resources>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ID" Width="auto"/>
-                                    <DataGridTextColumn Header="Item Name" Width="auto" Binding="{Binding ItemName}"/>
+                                    <DataGridTextColumn Header="ID" Width="auto" Binding="{Binding ID, Mode=TwoWay}"/>
+                                    <DataGridTextColumn Header="Item Name" Width="auto" Binding="{Binding ItemName, Mode=TwoWay}"/>
+                                    <DataGridTextColumn Header="Note" Width="auto" Binding="{Binding Note, Mode=TwoWay}"/>
+                                    <DataGridTextColumn Header="Currency" Width="auto" Binding="{Binding Currency}"/>
                                     <DataGridTextColumn Header="Income" Width="auto" Binding="{Binding Income}"/>
-                                    <DataGridTextColumn Header="Expenses" Width="auto" Binding="{Binding Expense}"/>
+                                    <DataGridTextColumn Header="Expenses" Width="auto" Binding="{Binding Expense, Mode=TwoWay}"/>
                                     <DataGridTextColumn Header="Saving" Width="auto" Binding="{Binding Saving}"/>
-                                    <DataGridTextColumn Header="Date" Width="auto"/>
+                                    <DataGridTextColumn Header="Date" Width="auto" Binding="{Binding Date}"/>
+                                    <DataGridTextColumn Header="Type" Width="auto" Binding="{Binding CategoryType}"/>
+                                    
                                 </DataGrid.Columns>
                             </DataGrid>
 

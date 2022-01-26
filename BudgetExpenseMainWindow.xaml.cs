@@ -24,6 +24,7 @@ namespace BudgetExpense
         public BudgetExpenseMainWindow()
         {
             InitializeComponent();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -36,25 +37,31 @@ namespace BudgetExpense
             NewTransactionWindow ntw = new NewTransactionWindow();
             if(ntw.ShowDialog() == true)
             {
+                
                 var dc = ntw.Resources["incomeVM"] as TransactionDataViewModel;
                 if(dc != null)
                 {
                     var tvm = DataContext as TransactionDataViewModel;
                     if(tvm != null)
                     {
+                        
                         if(dc.TransactionData.CategoryType == "Expense")
                         {
                             tvm.AddExpense(dc.TransactionData);
+                            tvm.TransactionData.Amount = tvm.TotalExpense();
                         }
                         else if (dc.TransactionData.CategoryType == "Income")
                         {
                             tvm.AddIncome(dc.TransactionData);
+                            tvm.TransactionData.Expenses = tvm.TotalIncome();
                         }
                         else if(dc.TransactionData.CategoryType == "Saving")
                         {
                             tvm.AddSaving(dc.TransactionData);
                         }
+                        
                     }
+                    
                 }
             }
         }

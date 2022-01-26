@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BudgetExpense.Model
 {
-    public class TransactionData
+    public class TransactionData:INotifyPropertyChanged
     {
         public int ID { get; set; } = 1;
         public string ItemName { get; set; } = "";
         public string CategoryType { get; set; } = "";
         public string Note { get; set; } = "";
-        public decimal Amount { get; set; } = 0;
-        public string Date { get; set; } = "";
+        private decimal amount = 0;
+        public decimal Amount { get=> amount; set { amount = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Amount")); } }
+
+        private decimal expenses = 0;
+        public decimal Expenses { get => expenses; set { expenses = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Expenses")); } }
+        public DateTime Date { get; set; } = DateTime.Now;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public override string ToString()
         {
             return CategoryType;
@@ -28,9 +36,9 @@ namespace BudgetExpense.Model
         public string ItemName { get; set; } = "";
         public string Note { get; set; } = "";
         public int ID { get; set; } = 1;
-        public string Date { get; set; } = "";
-
-
+        public string Currency { get; set; } = "$";
+        public string CategoryType { get; set; } = "";
+        public decimal TotalExpense { get; set; } = 0;
     }
     public class CategoryTypeList
     {
@@ -47,4 +55,9 @@ namespace BudgetExpense.Model
         public List<NewTransaction> newTransactions =
             new List<NewTransaction> {};
     }
+    public class TransactionDataList
+    {
+        public List<TransactionData> transactions = new List<TransactionData> { };
+    }
+    
 }
