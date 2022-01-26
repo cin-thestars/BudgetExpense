@@ -16,8 +16,16 @@ namespace BudgetExpense.Model
         private decimal amount = 0;
         public decimal Amount { get=> amount; set { amount = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Amount")); } }
 
-        private decimal expenses = 0;
-        public decimal Expenses { get => expenses; set { expenses = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Expenses")); } }
+        private decimal income = 0;
+        public decimal Income { get => income; set { income = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Income")); } }
+        private decimal saving = 0;
+
+        public decimal Saving
+        {
+            get => saving;
+            set { saving = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Saving")); }
+        }
+
         public DateTime Date { get; set; } = DateTime.Now;
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -110,7 +110,7 @@
 
                                     <Label x:Name="lblIncome" Content="Income" HorizontalAlignment="Center" VerticalAlignment="Top"
                                            Grid.Row="1" Foreground="White" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
-                                    <Label x:Name="lblShowIncomeValue" Content="{Binding TransactionData.Expenses, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                    <Label x:Name="lblShowIncomeValue" Content="{Binding TransactionData.Income, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                            Grid.Row="0" Foreground="White" FontFamily="Cambria" FontSize="36"/>
                                     <Label x:Name="lblUSDSymbolIncome" Foreground="WhiteSmoke" Grid.Row="0" Content="$" Margin="15,14,0,0" 
                                            FontSize="20" FontFamily="Cambira"/>
@@ -147,7 +147,7 @@
 
                                     <Label x:Name="lblSaving" Content="Saving" HorizontalAlignment="Center" VerticalAlignment="Top"
                                            Grid.Row="1" Foreground="White" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
-                                    <Label x:Name="lblShowSavingValue" Content="0.00" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                    <Label x:Name="lblShowSavingValue" Content="{Binding TransactionData.Saving, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                            Grid.Row="0" Foreground="White" FontFamily="Cambria" FontSize="36"/>
                                     <Label x:Name="lblSavingSymbol" Foreground="WhiteSmoke" Grid.Row="0" Content="$" Margin="15,14,0,0" 
                                            FontSize="20" FontFamily="Cambira"/>

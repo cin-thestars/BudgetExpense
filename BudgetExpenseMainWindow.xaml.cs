@@ -53,11 +53,12 @@ namespace BudgetExpense
                         else if (dc.TransactionData.CategoryType == "Income")
                         {
                             tvm.AddIncome(dc.TransactionData);
-                            tvm.TransactionData.Expenses = tvm.TotalIncome();
+                            tvm.TransactionData.Income = tvm.TotalIncome();
                         }
                         else if(dc.TransactionData.CategoryType == "Saving")
                         {
                             tvm.AddSaving(dc.TransactionData);
+                            tvm.TransactionData.Saving = tvm.TotalSaving();
                         }
                         
                     }

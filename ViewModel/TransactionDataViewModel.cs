@@ -100,5 +100,14 @@ namespace BudgetExpense.ViewModel
             }
             return total;
         }
+        public decimal TotalSaving()
+        {
+            decimal total = 0;
+            for (int i = 0; i < newTransactions.Count; i++)
+            {
+                total += newTransactions[i].Saving;
+            }
+            return total;
+        }
     }
 }
