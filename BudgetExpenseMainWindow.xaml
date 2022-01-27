@@ -77,7 +77,7 @@
                             <!-- Money and Symbol-->
                             <Label Content="Current Balance:" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"
                                    FontSize="12" FontFamily="Cambria" Foreground="White" Opacity="0.6"/>
-                            <Label Content="0.00" Grid.Column="2" Grid.Row="1" x:Name="lblMoney" VerticalAlignment="Bottom"  HorizontalAlignment="Center"
+                            <Label Content="{Binding TransactionData.Balance}" Grid.Column="2" Grid.Row="1" x:Name="lblMoney" VerticalAlignment="Bottom"  HorizontalAlignment="Center"
                                    FontFamily="Cambria" FontSize="30" Foreground="White"/>
                             <Label x:Name="lblSymbol" Grid.Column="2" Grid.Row="1" Content="$" VerticalAlignment="Bottom" HorizontalAlignment="Left"
                                    FontFamily="Cambria" FontSize="24" Foreground="White" Margin="30,3,0,3"/>
@@ -186,7 +186,7 @@
                                     <DataGridTextColumn Header="Income" Width="auto" Binding="{Binding Income}"/>
                                     <DataGridTextColumn Header="Expenses" Width="auto" Binding="{Binding Expense, Mode=TwoWay}"/>
                                     <DataGridTextColumn Header="Saving" Width="auto" Binding="{Binding Saving}"/>
-                                    <DataGridTextColumn Header="Date" Width="auto" Binding="{Binding Date}"/>
+                                    <DataGridTextColumn Header="Date" Width="auto" Binding="{Binding Date, StringFormat='dd/MM/yyyy'}"/>
                                     <DataGridTextColumn Header="Type" Width="auto" Binding="{Binding CategoryType}"/>
                                     
                                 </DataGrid.Columns>

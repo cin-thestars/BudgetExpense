@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BudgetExpense"
         xmlns:vm="clr-namespace:BudgetExpense.ViewModel"
         mc:Ignorable="d"
-        Title="New Transaction" Height="700" Width="500">
+        Title="New Transaction" Height="700" Width="500" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <vm:TransactionDataViewModel x:Key="incomeVM"/>
     </Window.Resources>
@@ -60,7 +60,7 @@
                 <ComboBox ItemsSource="{Binding categoryTypeLists}" SelectedItem="{Binding TransactionData.CategoryType}"
                           Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></ComboBox>
                 <!-- DatePicker -->
-                <DatePicker Grid.Row="9" Text="{Binding TransactionData.Date}" SelectedDate="{Binding TransactionData.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></DatePicker>
+                <DatePicker Grid.Row="9" SelectedDate="{Binding TransactionData.Date}" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"></DatePicker>
                 <!-- Buttons --> 
                 <Button Name="DoCancelBtn" Grid.Row="10" Grid.Column="0" 
                         Content="Cancel" FontSize="20"

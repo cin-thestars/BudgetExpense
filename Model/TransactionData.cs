@@ -14,10 +14,18 @@ namespace BudgetExpense.Model
         public string CategoryType { get; set; } = "";
         public string Note { get; set; } = "";
         private decimal amount = 0;
-        public decimal Amount { get=> amount; set { amount = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Amount")); } }
+        public decimal Amount
+        { 
+            get=> amount; 
+            set { amount = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Amount")); } 
+        }
 
         private decimal income = 0;
-        public decimal Income { get => income; set { income = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Income")); } }
+        public decimal Income 
+        { 
+            get => income; 
+            set { income = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Income")); } 
+        }
         private decimal saving = 0;
 
         public decimal Saving
@@ -25,8 +33,23 @@ namespace BudgetExpense.Model
             get => saving;
             set { saving = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Saving")); }
         }
+        private decimal balance = 0;
 
-        public DateTime Date { get; set; } = DateTime.Now;
+        public decimal Balance
+        {
+            get => balance;
+            set { balance = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Balance")); }
+        }
+
+        private DateTime date = DateTime.Now;
+
+        public DateTime Date
+        {
+            get => date;
+            set { date = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Date")); }
+        }
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -46,7 +69,7 @@ namespace BudgetExpense.Model
         public int ID { get; set; } = 1;
         public string Currency { get; set; } = "$";
         public string CategoryType { get; set; } = "";
-        public decimal TotalExpense { get; set; } = 0;
+        public DateTime Date { get; set; }
     }
     public class CategoryTypeList
     {
