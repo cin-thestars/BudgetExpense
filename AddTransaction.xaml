@@ -10,7 +10,7 @@
         Title="AddTransaction" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="WhiteSmoke" Foreground="Black" FontFamily="Cambria" FontSize="18" >
     <Window.Resources>
-        <vm:Transaction_Add_View_Model x:Key="incomeVM"/>
+        <vm:TransactionDataViewModel x:Key="incomeVM"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -63,23 +63,24 @@
                 <!-- Textbox -->
                 <TextBox x:Name="txtBoxItemName" Grid.Row="1" FontSize="22" VerticalAlignment="Center"
                          HorizontalContentAlignment="Left" Style="{StaticResource rounded}" 
-                         Text="{Binding Transaction_Add.ItemName}"  />
+                         Text="{Binding TransactionData.ItemName, Mode=TwoWay}"  />
                 <TextBox x:Name="txtBoxNote" Grid.Row="5" FontSize="22" VerticalAlignment="Center"
                          HorizontalContentAlignment="Left" Style="{StaticResource rounded}"
-                         Text="{Binding Transaction_Add.Note}" />
+                         Text="{Binding TransactionData.Note, Mode=TwoWay}" />
                 <TextBox x:Name="txtBoxAmount" Grid.Row="7" FontSize="22" VerticalAlignment="Center"
                          HorizontalContentAlignment="Left" Style="{StaticResource rounded}"
-                         Text="{Binding Transaction_Add.Amount}"/>
+                         Text="{Binding TransactionData.Amount, Mode=TwoWay}"/>
 
                 <!-- ComboBox -->
                 <ComboBox x:Name="comboBoxType" Grid.Row="3" FontSize="22" VerticalAlignment="Center"
-                          HorizontalContentAlignment="Left" ItemsSource="{Binding transaction_Adds}" 
-                          SelectedItem="{Binding Transaction_Add.Type}"/>
+                          HorizontalContentAlignment="Left" ItemsSource="{Binding categoryTypeLists}"
+                          SelectedItem="{Binding TransactionData.CategoryType}"/>
 
                 <!-- Datepicker -->
                 <DatePicker x:Name="datePick" FontSize="22" Grid.Row="9" VerticalAlignment="Center"
                             BorderBrush="Black" BorderThickness="1" Background="Gray"
-                            Text="{Binding Transaction_Add.Date}"/>
+                            Text="{Binding TransactionData.Date}" 
+                            SelectedDate="{Binding TransactionData.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <!-- Border for BTN -->
                 <Border Grid.Row="10" >

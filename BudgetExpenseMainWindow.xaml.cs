@@ -32,27 +32,47 @@ namespace BudgetExpense
             AddTransaction ntw = new AddTransaction();
             if (ntw.ShowDialog() == true)
             {
-                var dc = ntw.Resources["incomeVM"] as Transaction_Add_View_Model;
+                var dc = ntw.Resources["incomeVM"] as TransactionDataViewModel;
                 if (dc != null)
                 {
-                    var tvm = DataContext as Transaction_Add_View_Model;
+                    var tvm = DataContext as TransactionDataViewModel;
                     if (tvm != null)
                     {
-                        if (dc.Transaction_Add.Type == "Expense")
+                        if (dc.TransactionData.CategoryType == "Expense")
                         {
-                            tvm.AddExpense(dc.Transaction_Add);
+                            tvm.AddExpense(dc.TransactionData);
+                            tvm.TransactionData.Amount = tvm.TotalExpense();
+                            tvm.TransactionData.Balance = tvm.TotalBalance();
+                            if (tvm.TotalBalance() > 0 && tvm.TotalBalance() < tvm.TotalSaving())
+                            {
+                                MessageBox.Show("You have exceeded your saving");
+                            }
                         }
-                        else if (dc.Transaction_Add.Type == "Income")
+                        else if (dc.TransactionData.CategoryType == "Income")
                         {
-                            tvm.AddIncome(dc.Transaction_Add);
+                            tvm.AddIncome(dc.TransactionData);
+                            tvm.TransactionData.Income = tvm.TotalIncome();
+                            tvm.TransactionData.Balance = tvm.TotalBalance();
+                            if (tvm.TotalBalance() > 0 && tvm.TotalBalance() < tvm.TotalSaving())
+                            {
+                                MessageBox.Show("You have exceeded your saving");
+                            }
                         }
-                        else if (dc.Transaction_Add.Type == "Saving")
+                        else if (dc.TransactionData.CategoryType == "Saving")
                         {
-                            tvm.AddSaving(dc.Transaction_Add);
+                            tvm.AddSaving(dc.TransactionData);
+                            tvm.TransactionData.Saving = tvm.TotalSaving();
+                            tvm.TransactionData.Balance = tvm.TotalBalance();
+                            if (tvm.TotalBalance() > 0 && tvm.TotalBalance() < tvm.TotalSaving())
+                            {
+                                MessageBox.Show("You have exceeded your saving");
+                            }
                         }
                     }
+
                 }
             }
+
         }
 
         private void Language_ButtonClick(object sender, RoutedEventArgs e)
