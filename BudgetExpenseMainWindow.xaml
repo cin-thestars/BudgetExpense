@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:BudgetExpense"
         xmlns:vm="clr-namespace:BudgetExpense.ViewModel"
         mc:Ignorable="d"
-        Title="Budget Expense" Height="700" Width="500" WindowStartupLocation="CenterScreen"
+        Title="Budget Expense" Height="700" Width="600" WindowStartupLocation="CenterScreen"
         Background="WhiteSmoke" Foreground="Black" FontFamily="Cambria" FontSize="18" >
 
     <Window.DataContext>
-        <vm:Transaction_Add_View_Model/>
+        <vm:TransactionDataViewModel/>
     </Window.DataContext>
     <Grid>
-        <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="WhiteSmoke" >
+        <TabControl Margin="5" BorderBrush="#FF3A3C3B" TabStripPlacement="Bottom" Background="WhiteSmoke" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -41,7 +42,9 @@
                 </Style>
             </TabControl.Resources>
             
-            <TabItem Header="Transaction" Width="150" FontFamily="Cambria" FontSize="20" Background="#FF3A3C3B">
+            <TabItem Header="Transaction" Width="150" FontFamily="Cambria" 
+                     VerticalAlignment="Center" HorizontalAlignment="Center" 
+                     Margin="0,0,-131,0" FontSize="20" Background="#FF3A3C3B">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -71,15 +74,15 @@
                             <!-- Currency Expander -->
                             <!-- USD AND Riel -->
                             <Expander Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="13,4"/>
-                            <!-- Date time -->
-                            <DatePicker Grid.Column="2" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                                        Background="#FF3A3C3B" Width="150" FontFamily="Cambria" BorderBrush="#FF3A3C3B" BorderThickness="1"/>
 
+                            
                             <!-- Money and Symbol-->
-                            <Label Content="Current Balance:" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"
-                                   FontSize="12" FontFamily="Cambria" Foreground="#FF3A3C3B" Opacity="0.6"/>
-                            <Label Content="0.00" Grid.Column="2" Grid.Row="1" x:Name="lblMoney" VerticalAlignment="Bottom"  HorizontalAlignment="Center"
-                                   FontFamily="Cambria" FontSize="30" Foreground="Black"/>
+                            <Label Content="Current Balance:" Grid.Row="0" 
+                                   Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                   FontSize="16" FontFamily="Cambria" Foreground="#FF3A3C3B" Opacity="0.6"/>
+                            <Label Content="{Binding TransactionData.Balance}" Grid.Column="2" 
+                                   Grid.Row="1" x:Name="lblMoney" VerticalAlignment="Center"  HorizontalAlignment="Center"
+                                   FontFamily="Cambria" FontSize="40" Foreground="Black"/>
                             <Label x:Name="lblSymbol" Grid.Column="2" Grid.Row="1" Content="$" VerticalAlignment="Bottom" HorizontalAlignment="Left"
                                    FontFamily="Cambria" FontSize="24" Foreground="Black" Margin="30,3,0,3"/>
 
@@ -113,7 +116,7 @@
 
                                     <Label x:Name="lblIncome" Content="Income" HorizontalAlignment="Center" VerticalAlignment="Top"
                                            Grid.Row="1" Foreground="#FF3A3C3B" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
-                                    <Label x:Name="lblShowIncomeValue" Content="0.00" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                    <Label x:Name="lblShowIncomeValue" Content="{Binding TransactionData.Income, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                            Grid.Row="0" Foreground="Black"
                                            FontFamily="Cambria" FontSize="36"/>
                                     <Label x:Name="lblUSDSymbolIncome" Foreground="Black" Grid.Row="0" Content="$" Margin="15,14,0,0" 
@@ -132,7 +135,7 @@
 
                                     <Label x:Name="lblExpense" Content="Expense" HorizontalAlignment="Center" VerticalAlignment="Top"
                                            Grid.Row="1" Foreground="#FF3A3C3B" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
-                                    <Label x:Name="lblShowExpenseValue" Content="0.00" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                    <Label x:Name="lblShowExpenseValue" Content="{Binding TransactionData.Amount, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                            Grid.Row="0" Foreground="Black" FontFamily="Cambria" FontSize="36"/>
                                     <Label x:Name="lblExpenseSymbol" Foreground="Black" Grid.Row="0" Content="$" Margin="15,14,0,0" 
                                            FontSize="20" FontFamily="Cambira"/>
@@ -150,7 +153,7 @@
 
                                     <Label x:Name="lblSaving" Content="Saving" HorizontalAlignment="Center" VerticalAlignment="Top"
                                            Grid.Row="1" Foreground="#FF3A3C3B" FontSize="20" Opacity="0.6" FontFamily="Cambria" Margin="0,-10,10,0"/>
-                                    <Label x:Name="lblShowSavingValue" Content="0.00" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                    <Label x:Name="lblShowSavingValue" Content="{Binding TransactionData.Saving, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                            Grid.Row="0" Foreground="Black" FontFamily="Cambria" FontSize="36"/>
                                     <Label x:Name="lblSavingSymbol" Foreground="Black" Grid.Row="0" Content="$" Margin="15,14,0,0" 
                                            FontSize="20" FontFamily="Cambira"/>
@@ -172,9 +175,9 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <DataGrid HeadersVisibility="All" Background="WhiteSmoke" RowBackground="Gray" 
+                            <DataGrid Name="DG" HeadersVisibility="All" Background="WhiteSmoke" RowBackground="WhiteSmoke"
                                       AlternatingRowBackground="White" Grid.ColumnSpan="2" 
-                                      AutoGenerateColumns="False" ItemsSource="{Binding Transactions}">
+                                      AutoGenerateColumns="False" ItemsSource="{Binding newTransactions, Mode=TwoWay}">
                                 <DataGrid.Resources>
                                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}"
                                            TargetType="{x:Type DataGridColumnHeader}">
@@ -182,21 +185,20 @@
                                     </Style>
                                 </DataGrid.Resources>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Incomes" Binding="{Binding Incomes}" />
-                                    <DataGridTemplateColumn Header="Expenses">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Expenses}"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="ID" Width="auto" Binding="{Binding ID, Mode=TwoWay}"/>
+                                    <DataGridTextColumn Header="Item Name" Width="auto" Binding="{Binding ItemName, Mode=TwoWay}"/>
+                                    <DataGridTextColumn Header="Note" Width="auto" Binding="{Binding Note, Mode=TwoWay}"/>
+                                    <DataGridTextColumn Header="Currency" Width="auto" Binding="{Binding Currency}"/>
+                                    <DataGridTextColumn Header="Income" Width="auto" Binding="{Binding Income}"/>
+                                    <DataGridTextColumn Header="Expenses" Width="auto" Binding="{Binding Expense, Mode=TwoWay}"/>
+                                    <DataGridTextColumn Header="Saving" Width="auto" Binding="{Binding Saving}"/>
+                                    <DataGridTextColumn Header="Date" Width="auto" Binding="{Binding Date}"/>
+                                    <DataGridTextColumn Header="Type" Width="auto" Binding="{Binding CategoryType}"/>
+
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <Canvas Grid.ColumnSpan="2" Grid.RowSpan="2">
-                                <Button Style="{StaticResource btnRound}" Canvas.Left="10" 
-                                        Canvas.Bottom="10" Content="KH" 
-                                        Foreground="Black" Click="Language_ButtonClick"/>
                                 <Button Click="Add_NewTransaction_Button"
                                         Style="{StaticResource btnRound}" Canvas.Right="10" 
                                         Canvas.Bottom="10" Content="+" Foreground="Black" Width="30"
@@ -207,41 +209,11 @@
                 </Grid>
             </TabItem>
 
-            <!-- Tabitem Control Expense -->
-            <TabItem Header="Saving" Width="150" FontFamily="Cambria" FontSize="20" Margin="8,0,-8,0" 
-                     Background="White">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Border CornerRadius="5" BorderBrush="#FF3A3C3B" BorderThickness="1" Margin="5" />
-
-                    <Label Content="Savings" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                           FontSize="28" FontFamily="Cambria" Foreground="Black"/>
-
-                    <!-- Tabcontrol for Saving and Complete -->
-                    <TabControl Grid.Row="1" Background="WhiteSmoke" >
-                        <TabItem Header="Saving" Width="230" >
-                            <DataGrid Background="WhiteSmoke" Margin="5" >
-                                
-                            </DataGrid>
-                        </TabItem>
-
-                        <TabItem Header="Completed" Width="230">
-                            <DataGrid Background="WhiteSmoke" Margin="5" >
-
-                            </DataGrid>
-                        </TabItem>
-                        
-                    </TabControl>
-                    
-                </Grid>
-            </TabItem>
-
-            <!-- Tabitem Control Saving -->
-            <TabItem Header="Report" Width="150" FontFamily="Cambria" FontSize="20" Margin="31,0,-31,0"
+            
+            <!-- Tabitem Control Report -->
+            <TabItem Header="Report" Width="150" FontFamily="Cambria" FontSize="20" 
+                     Margin="0,0,-281,0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                     
                      Background="WhiteSmoke">
                 <Grid>
                     <Grid.RowDefinitions>

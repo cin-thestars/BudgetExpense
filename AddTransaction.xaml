@@ -9,7 +9,9 @@
         mc:Ignorable="d"
         Title="AddTransaction" Height="700" Width="500" WindowStartupLocation="CenterScreen"
         Background="WhiteSmoke" Foreground="Black" FontFamily="Cambria" FontSize="18" >
-    
+    <Window.Resources>
+        <vm:TransactionDataViewModel x:Key="incomeVM"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
@@ -44,9 +46,8 @@
                 
                 <!-- DataContext -->
                 <Grid.DataContext>
-                    <vm:Transaction_Add_View_Model/>
+                    <DynamicResource ResourceKey="incomeVM"/>
                 </Grid.DataContext>
-
                 <!-- Label-->
                 <Label Content="Item Name" Grid.Row="0" FontSize="22" VerticalAlignment="Center" 
                        HorizontalAlignment="Left" FontWeight="SemiBold"/>
@@ -61,19 +62,25 @@
 
                 <!-- Textbox -->
                 <TextBox x:Name="txtBoxItemName" Grid.Row="1" FontSize="22" VerticalAlignment="Center"
-                         HorizontalContentAlignment="Left" Style="{StaticResource rounded}" />
+                         HorizontalContentAlignment="Left" Style="{StaticResource rounded}" 
+                         Text="{Binding TransactionData.ItemName, Mode=TwoWay}"  />
                 <TextBox x:Name="txtBoxNote" Grid.Row="5" FontSize="22" VerticalAlignment="Center"
-                         HorizontalContentAlignment="Left" Style="{StaticResource rounded}"/>
+                         HorizontalContentAlignment="Left" Style="{StaticResource rounded}"
+                         Text="{Binding TransactionData.Note, Mode=TwoWay}" />
                 <TextBox x:Name="txtBoxAmount" Grid.Row="7" FontSize="22" VerticalAlignment="Center"
-                         HorizontalContentAlignment="Left" Style="{StaticResource rounded}"/>
+                         HorizontalContentAlignment="Left" Style="{StaticResource rounded}"
+                         Text="{Binding TransactionData.Amount, Mode=TwoWay}"/>
 
                 <!-- ComboBox -->
                 <ComboBox x:Name="comboBoxType" Grid.Row="3" FontSize="22" VerticalAlignment="Center"
-                          HorizontalContentAlignment="Left" ItemsSource="{Binding Path=transaction_Adds}" />
+                          HorizontalContentAlignment="Left" ItemsSource="{Binding categoryTypeLists}"
+                          SelectedItem="{Binding TransactionData.CategoryType}"/>
 
                 <!-- Datepicker -->
                 <DatePicker x:Name="datePick" FontSize="22" Grid.Row="9" VerticalAlignment="Center"
-                            BorderBrush="Black" BorderThickness="1" Background="Gray"/>
+                            BorderBrush="Black" BorderThickness="1" Background="Gray"
+                            Text="{Binding TransactionData.Date}" 
+                            SelectedDate="{Binding TransactionData.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <!-- Border for BTN -->
                 <Border Grid.Row="10" >
