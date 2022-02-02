@@ -35,13 +35,15 @@ namespace BudgetExpense
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             NewTransactionWindow ntw = new NewTransactionWindow();
+            var tvm = DataContext as TransactionDataViewModel;
+            ntw.Balance = tvm.TransactionData.Balance;
+            ntw.Saving = tvm.TransactionData.Saving;
             if(ntw.ShowDialog() == true)
             {
                 
                 var dc = ntw.Resources["incomeVM"] as TransactionDataViewModel;
                 if(dc != null)
                 {
-                    var tvm = DataContext as TransactionDataViewModel;
                     if(tvm != null)
                     {
                         
@@ -50,30 +52,21 @@ namespace BudgetExpense
                             tvm.AddExpense(dc.TransactionData);
                             tvm.TransactionData.Amount = tvm.TotalExpense();
                             tvm.TransactionData.Balance = tvm.CalculateBalance();
-                            if (tvm.CalculateBalance() > 0 && tvm.CalculateBalance() < tvm.TotalSaving())
-                            {
-                                MessageBox.Show("You have exceeded your saving");
-                            }
+                            
                         }
                         else if (dc.TransactionData.CategoryType == "Income")
                         {
                             tvm.AddIncome(dc.TransactionData);
                             tvm.TransactionData.Income = tvm.TotalIncome();
                             tvm.TransactionData.Balance = tvm.CalculateBalance();
-                            if (tvm.CalculateBalance() > 0 && tvm.CalculateBalance() < tvm.TotalSaving())
-                            {
-                                MessageBox.Show("You have exceeded your saving");
-                            }
+                            
                         }
                         else if(dc.TransactionData.CategoryType == "Saving")
                         {
                             tvm.AddSaving(dc.TransactionData);
                             tvm.TransactionData.Saving = tvm.TotalSaving();
                             tvm.TransactionData.Balance = tvm.CalculateBalance();
-                            if (tvm.CalculateBalance() > 0 && tvm.CalculateBalance() < tvm.TotalSaving())
-                            {
-                                MessageBox.Show("You have exceeded your saving");
-                            }
+                            
                         }
                         
                     }

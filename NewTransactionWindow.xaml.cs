@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BudgetExpense.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,9 @@ namespace BudgetExpense
     /// </summary>
     public partial class NewTransactionWindow : Window
     {
+        public decimal Balance { get; internal set; }
+        public decimal Saving { get; internal set; }
+
         public NewTransactionWindow()
         {
             InitializeComponent();
@@ -46,7 +50,21 @@ namespace BudgetExpense
 
         private void DoSaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            var dc = Resources["incomeVM"] as TransactionDataViewModel;
+            if (dc.TransactionData.CategoryType == "Expense" && (Balance - dc.TransactionData.Amount) < Saving)
+            {
+                var res = MessageBox.Show("You have exceeded your saving money. Do you want to continue?","Warning", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                if (res == MessageBoxResult.Yes)
+                {
+                    DialogResult = true;
+                }
+                else
+                    DialogResult = false;
+            }
+            else
+            {
+                DialogResult = true;
+            }
             Close();
         }
 
