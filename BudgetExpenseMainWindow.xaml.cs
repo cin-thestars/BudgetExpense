@@ -43,30 +43,18 @@ namespace BudgetExpense
                             tvm.AddExpense(dc.TransactionData);
                             tvm.TransactionData.Amount = tvm.TotalExpense();
                             tvm.TransactionData.Balance = tvm.TotalBalance();
-                            if (tvm.TotalBalance() > 0 && tvm.TotalBalance() < tvm.TotalSaving())
-                            {
-                                MessageBox.Show("You have exceeded your saving");
-                            }
                         }
                         else if (dc.TransactionData.CategoryType == "Income")
                         {
                             tvm.AddIncome(dc.TransactionData);
                             tvm.TransactionData.Income = tvm.TotalIncome();
                             tvm.TransactionData.Balance = tvm.TotalBalance();
-                            if (tvm.TotalBalance() > 0 && tvm.TotalBalance() < tvm.TotalSaving())
-                            {
-                                MessageBox.Show("You have exceeded your saving");
-                            }
                         }
                         else if (dc.TransactionData.CategoryType == "Saving")
                         {
                             tvm.AddSaving(dc.TransactionData);
                             tvm.TransactionData.Saving = tvm.TotalSaving();
                             tvm.TransactionData.Balance = tvm.TotalBalance();
-                            if (tvm.TotalBalance() > 0 && tvm.TotalBalance() < tvm.TotalSaving())
-                            {
-                                MessageBox.Show("You have exceeded your saving");
-                            }
                         }
                     }
 
