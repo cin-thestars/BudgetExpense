@@ -33,7 +33,13 @@ namespace BudgetExpense.Model
             set { balance = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Balance")); }
         }
 
-        public DateTime Date { get; set; } = DateTime.Now;
+        private DateTime date = DateTime.Now;
+
+        public DateTime Date
+        {
+            get => date;
+            set { date = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Date")); }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -48,13 +54,13 @@ namespace BudgetExpense.Model
         public decimal Expense { get; set; } = 0;
         public decimal Income { get; set; } = 0;
         public decimal Saving { get; set; } = 0;
-        public decimal Balance { get; set; } = 0;
         public string ItemName { get; set; } = "";
         public string Note { get; set; } = "";
         public int ID { get; set; } = 1;
         public string Currency { get; set; } = "$";
         public string CategoryType { get; set; } = "";
-        public decimal TotalExpense { get; set; } = 0;
+        public DateTime Date { get; set; }
+        
     }
     public class CategoryTypeList
     {

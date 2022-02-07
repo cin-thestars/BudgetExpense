@@ -30,12 +30,15 @@ namespace BudgetExpense
         private void Add_NewTransaction_Button(object sender, RoutedEventArgs e)
         {
             AddTransaction ntw = new AddTransaction();
+            var tvm = DataContext as TransactionDataViewModel;
+            ntw.Balance = tvm.TransactionData.Balance;
+            ntw.Saving = tvm.TransactionData.Saving;
             if (ntw.ShowDialog() == true)
             {
                 var dc = ntw.Resources["incomeVM"] as TransactionDataViewModel;
                 if (dc != null)
                 {
-                    var tvm = DataContext as TransactionDataViewModel;
+                    
                     if (tvm != null)
                     {
                         if (dc.TransactionData.CategoryType == "Expense")

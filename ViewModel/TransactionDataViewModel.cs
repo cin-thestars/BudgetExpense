@@ -39,8 +39,8 @@ namespace BudgetExpense.ViewModel
                 Note = transactionData.Note,
                 ID = GenerateID(transactionData.ID),
                 Currency = "$",
-                CategoryType = transactionData.CategoryType
-
+                CategoryType = transactionData.CategoryType,
+                Date = transactionData.Date
             });
         }
         public void AddIncome(TransactionData transactionData)
@@ -55,8 +55,8 @@ namespace BudgetExpense.ViewModel
                 Note = transactionData.Note,
                 ID = GenerateID(transactionData.ID),
                 Currency = "$",
-                CategoryType = transactionData.CategoryType
-
+                CategoryType = transactionData.CategoryType,
+                Date = transactionData.Date
             });
 
         }
@@ -71,7 +71,8 @@ namespace BudgetExpense.ViewModel
                 Note = transactionData.Note,
                 ID = GenerateID(transactionData.ID),
                 Currency = "$",
-                CategoryType = transactionData.CategoryType
+                CategoryType = transactionData.CategoryType,
+                Date = transactionData.Date
             });
         }
         

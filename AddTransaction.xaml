@@ -79,8 +79,8 @@
                 <!-- Datepicker -->
                 <DatePicker x:Name="datePick" FontSize="22" Grid.Row="9" VerticalAlignment="Center"
                             BorderBrush="Black" BorderThickness="1" Background="Gray"
-                            Text="{Binding TransactionData.Date}" 
-                            SelectedDate="{Binding TransactionData.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             
+                            SelectedDate="{Binding TransactionData.Date, Mode=TwoWay}"/>
 
                 <!-- Border for BTN -->
                 <Border Grid.Row="10" >

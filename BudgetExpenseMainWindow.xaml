@@ -192,7 +192,7 @@
                                     <DataGridTextColumn Header="Income" Width="auto" Binding="{Binding Income}"/>
                                     <DataGridTextColumn Header="Expenses" Width="auto" Binding="{Binding Expense, Mode=TwoWay}"/>
                                     <DataGridTextColumn Header="Saving" Width="auto" Binding="{Binding Saving}"/>
-                                    <DataGridTextColumn Header="Date" Width="auto" Binding="{Binding Date}"/>
+                                    <DataGridTextColumn Header="Date" Width="auto" Binding="{Binding Date, StringFormat='dd/MM/yyyy'}"/>
                                     <DataGridTextColumn Header="Type" Width="auto" Binding="{Binding CategoryType}"/>
 
                                 </DataGrid.Columns>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BudgetExpense.ViewModel;
 
 namespace BudgetExpense
 {
@@ -19,6 +20,9 @@ namespace BudgetExpense
     /// </summary>
     public partial class AddTransaction : Window
     {
+        public decimal Balance { get; internal set; }
+        public decimal Saving { get; internal set; }
+
         public AddTransaction()
         {
             InitializeComponent();
@@ -32,7 +36,21 @@ namespace BudgetExpense
 
         private void Click_Save(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            var dc = Resources["incomeVM"] as TransactionDataViewModel;
+            if (dc.TransactionData.CategoryType == "Expense" && (Balance - dc.TransactionData.Amount) < Saving)
+            {
+                var res = MessageBox.Show("This will exceed your saving money. Do you want to continue?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.Yes)
+                {
+                    DialogResult = true;
+                }
+                else
+                    DialogResult = false;
+            }
+            else
+            {
+                DialogResult = true;
+            }
             Close();
         }
 
